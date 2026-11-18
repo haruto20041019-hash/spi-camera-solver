@@ -1,0 +1,29 @@
+{
+  "name": "spi-camera-solver",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev:server": "node server/index.mjs",
+    "dev:client": "node scripts/ensure-cert.mjs && vite --host",
+    "dev": "node scripts/ensure-cert.mjs && sh -c 'node server/index.mjs & pid=$!; trap \"kill $pid 2>/dev/null\" EXIT INT TERM; vite --host'",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host",
+    "cf:dev": "npm run build && wrangler dev",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "cf:secret:key": "wrangler secret put GEMINI_API_KEY"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0",
+    "wrangler": "^4.164.0"
+  }
+}
